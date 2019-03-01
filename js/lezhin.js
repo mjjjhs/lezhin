@@ -253,7 +253,7 @@ if(!window['lezhin']) {
           if(_O.Vars.curRound === 1) {
             s += `
             <li id="history">
-              <a class="modal final" id="modal" href="javascript:void(0);" onclick="lezhin.Event.clickHistory(this);"></a>
+              <a class="modal final" id="modal" href="javascript:void(0);"></a>
             </li>
             `;
           }
