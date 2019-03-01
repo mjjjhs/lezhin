@@ -1,131 +1,222 @@
 if(!window['lezhin']) {
 	lezhin = {};
 	( function (_O) {
-    _O.start = () => {
-      _O.Ctrl.gameNewStart.bind(_O.Ctrl)();
-    };
-    _O.Vars = {
-      lists: [
-        {
-          name: '전지현',
-          imgSrc: '../images/01.jpg'
-        },
-        {
-          name: '이영애',
-          imgSrc: '../images/02.jpg'
-        },
-        {
-          name: '수지',
-          imgSrc: '../images/03.jpg'
-        },
-        {
-          name: '김태희',
-          imgSrc: '../images/04.jpg'
-        },
-        {
-          name: '신민아',
-          imgSrc: '../images/05.jpg'
-        },
-        {
-          name: '송혜교',
-          imgSrc: '../images/06.jpg'
-        },
-        {
-          name: '박보영',
-          imgSrc: '../images/07.jpg'
-        },
-        {
-          name: '아이유',
-          imgSrc: '../images/08.jpg'
-        },
-        {
-          name: '김사랑',
-          imgSrc: '../images/09.jpg'
-        },
-        {
-          name: '아이린',
-          imgSrc: '../images/10.jpg'
-        },
-        {
-          name: '이효리',
-          imgSrc: '../images/11.jpg'
-        },
-        {
-          name: '한효주',
-          imgSrc: '../images/12.jpg'
-        },
-        {
-          name: '한지민',
-          imgSrc: '../images/13.jpg'
-        },
-        {
-          name: '이나영',
-          imgSrc: '../images/14.jpg'
-        },
-        {
-          name: '이연희',
-          imgSrc: '../images/15.jpg'
-        },
-        {
-          name: '고준희',
-          imgSrc: '../images/16.jpg'
-        }
-      ],
-      curRound: 16,
-      curStage: 0,
-      gameHistory: {
+    _O.init = () => {
+      const v = _O.Vars;
+      v.curRound = 16;
+      v.curStage = 0;
+      v.gameHistory = {
         '16': [],
         '8': [],
         '4': [],
         '2': [],
         '1': []
-      }
+      };
+      v.lists = _O.Ctrl.getLists();
+      _O.Ctrl.prevCancelOnOff();
+    };
+    _O.start = () => {
+      _O.init();
+      _O.Ctrl.gameNewStart.bind(_O.Ctrl)();
+    };
+    _O.Vars = {
+      lists:null,
+      curRound: 0,
+      curStage: 0,
+      maxRound: 16,
+      gameHistory: null
     };
     _O.Ctrl = {
+      getLists() {
+        return [
+          {
+            name: '전지현',
+            imgSrc: '../images/01.jpg',
+            selected: false
+          },
+          {
+            name: '이영애',
+            imgSrc: '../images/02.jpg',
+            selected: false
+          },
+          {
+            name: '수지',
+            imgSrc: '../images/03.jpg',
+            selected: false
+          },
+          {
+            name: '김태희',
+            imgSrc: '../images/04.jpg',
+            selected: false
+          },
+          {
+            name: '신민아',
+            imgSrc: '../images/05.jpg',
+            selected: false
+          },
+          {
+            name: '송혜교',
+            imgSrc: '../images/06.jpg',
+            selected: false
+          },
+          {
+            name: '박보영',
+            imgSrc: '../images/07.jpg',
+            selected: false
+          },
+          {
+            name: '아이유',
+            imgSrc: '../images/08.jpg',
+            selected: false
+          },
+          {
+            name: '김사랑',
+            imgSrc: '../images/09.jpg',
+            selected: false
+          },
+          {
+            name: '아이린',
+            imgSrc: '../images/10.jpg',
+            selected: false
+          },
+          {
+            name: '이효리',
+            imgSrc: '../images/11.jpg',
+            selected: false
+          },
+          {
+            name: '한효주',
+            imgSrc: '../images/12.jpg',
+            selected: false
+          },
+          {
+            name: '한지민',
+            imgSrc: '../images/13.jpg',
+            selected: false
+          },
+          {
+            name: '이나영',
+            imgSrc: '../images/14.jpg',
+            selected: false
+          },
+          {
+            name: '이연희',
+            imgSrc: '../images/15.jpg',
+            selected: false
+          },
+          {
+            name: '고준희',
+            imgSrc: '../images/16.jpg',
+            selected: false
+          }
+        ];
+      },
       rndLists(arr) { //배열 랜덤 섞음
-        return arr.map((n) => { return [Math.random(), n] }).sort().map((n) => { n[1].selected = false; return n[1] });
+        return arr.map((n) => { return [Math.random(), n] }).sort().map((n) => {  return n[1] });//n[1].selected = false;
       },
       selectedLists(arr) {
-        return arr.filter((n) => {
-          if(n.selected === true) {
-            n.selected = false;
-            return n;
-          }
-        });
+        return arr.filter((n) => n.selected === true);
       },
       gameNewStart() {
         const v = _O.Vars;
         v.gameHistory[v.curRound.toString()] = this.rndLists(v.lists);
-        console.log('gameNewStart::gameHistory::', v.gameHistory);
         _O.Html.set.bind(_O.Html)();
+      },
+      copyObj(obj) { //Deep Copy
+        let copy = {};
+        for (let attr in obj) {
+          if (obj.hasOwnProperty(attr)) {
+            copy[attr] = obj[attr];
+          }
+        }
+        copy.selected = false;
+        return copy;
       },
       nextRound() {
         const v = _O.Vars;
         if(v.curRound <= 1) return;
+        v.lists = _O.Ctrl.selectedLists(v.gameHistory[v.curRound.toString()]).map((n) => _O.Ctrl.copyObj(n));
         if(v.curRound > 1) v.curRound /= 2;
         v.curStage = 0;
-        v.lists = _O.Ctrl.selectedLists(v.gameHistory[(v.curRound * 2).toString()]);
         v.gameHistory[v.curRound.toString()] = this.rndLists(v.lists);
+        console.log('v.lists::',v.lists, 'v.gameHistory::',v.gameHistory);
         _O.Html.setRoundTitle();
-        _O.Html.setItem();
+      },
+      prevCancelOnOff() {
+        const footerObj = document.getElementById('footer');
+        if(_O.Vars.curRound === _O.Vars.maxRound) {
+          if(_O.Vars.curRound > 1 && _O.Vars.curStage > 0) footerObj.className = 'footer';
+          else footerObj.className = 'footer soff';
+        } else {
+          if(_O.Vars.curRound > 1) footerObj.className = 'footer';
+          else footerObj.className = 'footer soff';
+        }
       }
     };
     _O.Event = {
       clickItem(obj) {
-        if(_O.Vars.curRound === 1) return;
-        const e = window.event;
+        const v = _O.Vars;
+        if(v.curRound === 1) return;
         const idx = obj.id.split('_')[1];
-        _O.Vars.gameHistory[_O.Vars.curRound.toString()][idx].selected = true;
+        v.gameHistory[v.curRound.toString()][idx].selected = true;
         obj.className = 'item selected';
-        if(_O.Vars.curStage < _O.Vars.curRound/2) _O.Vars.curStage++;
-        if(_O.Vars.curStage === _O.Vars.curRound/2) _O.Ctrl.nextRound();
+        if(v.curStage < v.curRound/2) v.curStage++;
+        if(v.curStage === v.curRound/2) _O.Ctrl.nextRound();
         _O.Html.setItem();
+        _O.Ctrl.prevCancelOnOff();
+      },
+      clickCancel() {
+        _O.start();
+      },
+      clickPrev() {
+        const v = _O.Vars;
+        if(v.curStage > 0) v.curStage--;
+        else {
+          v.gameHistory[v.curRound.toString()] = [];
+          if(v.curRound < _O.Vars.maxRound) {
+            v.curRound *= 2;
+            v.curStage = v.curRound / 2 - 1;
+          }
+          _O.Html.setRoundTitle();
+          v.lists = v.gameHistory[v.curRound.toString()];
+        }
+
+        v.lists[v.curStage * 2].selected = false;
+        v.lists[v.curStage * 2 + 1].selected = false;
+        _O.Html.setItem();
+        _O.Ctrl.prevCancelOnOff();
       }
     };
     _O.Html = {
       set() {
         this.setRoundTitle();
         this.setContent();
+      },
+      setHistory() {
+        const tObj = document.getElementById('modal');
+        let key, roundDiv, imgObj, roundTitleDiv, roundImgWrapDiv;
+        let historyTitleDiv = document.createElement('h4');
+        historyTitleDiv.innerText = '히스토리';
+        tObj.appendChild(historyTitleDiv);
+        let wrapDiv = document.createElement('DIV');
+        wrapDiv.className = 'history_box';
+        for(key in _O.Vars.gameHistory) {
+          roundDiv = document.createElement('DIV');
+          roundDiv.className = 'round';
+          roundTitleDiv = document.createElement('h5');
+          roundTitleDiv.innerText = (key === '1' ? `최종 이상형` : `${key}강`);
+          roundDiv.appendChild(roundTitleDiv);
+          roundImgWrapDiv = document.createElement('DIV');
+          _O.Vars.gameHistory[key].forEach((itm) => {
+            imgObj = document.createElement('IMG');
+            imgObj.setAttribute('src', itm.imgSrc);
+            imgObj.className = `history_item ${itm.selected ? '' : (key !== '1' ? 'dim' : '')}`;
+            roundImgWrapDiv.appendChild(imgObj);
+          });
+          roundDiv.appendChild(roundImgWrapDiv);
+          wrapDiv.appendChild(roundDiv);
+        }
+        tObj.appendChild(wrapDiv);
       },
       setRoundTitle() {
         if(_O.Vars.curRound > 1) document.getElementById('roundTitle').innerText = `${_O.Vars.curRound}강 선택`;
@@ -136,18 +227,26 @@ if(!window['lezhin']) {
         const tObj = document.getElementById('list_ideal');
         if(!tObj) return;
         tObj.innerHTML = s;
+        if(_O.Vars.curRound === 1) _O.Html.setHistory();
       },
       getItem() {
         let s = '', i = _O.Vars.curStage * 2, length = i + (_O.Vars.curRound > 1 ? 2 : _O.Vars.curRound);
         for(i; i < length && length <= _O.Vars.curRound; i++) {
           s += `
           <li>
-            <a class="item" id="item_${i}" href="javascript:void(0);" onclick="lezhin.Event.clickItem(this);">
+            <a class="item ${_O.Vars.curRound === 1 ? 'final' : ''}" id="item_${i}" href="javascript:void(0);" onclick="lezhin.Event.clickItem(this);">
               <span class="thumb"><img src="${_O.Vars.gameHistory[_O.Vars.curRound.toString()][i]['imgSrc']}" alt="여자 연예인 사진"></span>
               <span class="tit">이름: ${_O.Vars.gameHistory[_O.Vars.curRound.toString()][i]['name']}</span>
             </a>
           </li>
           `;
+          if(_O.Vars.curRound === 1) {
+            s += `
+            <li id="history">
+              <a class="modal final" id="modal" href="javascript:void(0);" onclick="lezhin.Event.clickHistory(this);"></a>
+            </li>
+            `;
+          }
         }
         return s;
       },

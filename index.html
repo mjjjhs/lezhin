@@ -11,20 +11,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/lezhin.css">
   </head>
-  <body>
+  <body onload="preLoaingImg()">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <h1>이상형 월드컵</h1>
-    <h3 id="roundTitle">이상형 월드컵에 참여해 주세요.</h3>
+    <header>
+      <h1>이상형 월드컵</h1>
+      <h3 id="roundTitle">이상형 월드컵에 참여해 주세요.</h3>
+    </header>
     <div class="content default" id="content">
       <button id="btnGameStart" onclick="start()">게임 참여</button>
     </div>
-    <footer></footer>
+    <footer class="footer soff" id="footer">
+      <button id="cancel" onclick="lezhin.Event.clickCancel()">취소</button>
+      <button id="prev" onclick="lezhin.Event.clickPrev()">이전</button>
+    </footer>
     <script src="js/lezhin.js" async defer></script>
     <script>
       function start() {
         lezhin.start();
+      }
+      function preLoaingImg() {
+        const preLoadingList = [
+          'images/01.jpg', 'images/02.jpg', 'images/03.jpg', 'images/04.jpg', 'images/05.jpg', 'images/06.jpg', 'images/07.jpg', 'images/08.jpg', 'images/09.jpg', 'images/10.jpg', 'images/11.jpg', 'images/12.jpg', 'images/13.jpg', 'images/14.jpg', 'images/15.jpg', 'images/16.jpg'
+        ], length = preLoadingList.length, tObj = document.getElementsByTagName("BODY")[0];
+        let i = 0, imgNode;
+        const hiddenNode = document.createElement('DIV');
+        hiddenNode.className = 'pre_load soff';
+        for(i; i < length; i++) {
+          imgNode = document.createElement('IMG');
+          imgNode.setAttribute('src', preLoadingList[i]);
+          hiddenNode.appendChild(imgNode);
+        }
+        tObj.appendChild(hiddenNode);
       }
     </script>
   </body>

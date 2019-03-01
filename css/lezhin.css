@@ -8,7 +8,7 @@ blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
 input,select,textarea,button {font-size:100%;vertical-align:middle}
 button {border:0 none;background-color:transparent;cursor:pointer; outline:none}
 table {border-collapse:collapse;border-spacing:0}
-body {-webkit-text-size-adjust:none} /* 뷰표트 변환시 폰트크기 자동확대 방지 */
+body {-webkit-text-size-adjust:none; padding:10px} /* 뷰표트 변환시 폰트크기 자동확대 방지 */
 input[type='text'],input[type='password'],input[type='submit'],input[type='search'] {-webkit-appearance:none; border-radius:0}
 input:checked[type='checkbox'] {background-color:#666; -webkit-appearance:checkbox}
 button,input[type='button'],input[type='submit'],input[type='reset'],input[type='file'] {-webkit-appearance:button; border-radius:0}
@@ -26,10 +26,11 @@ body,th,td,input,select,textarea,button {font-size:14px;line-height:1.5;font-fam
 a {color:#333;text-decoration:none}
 a:active, a:hover {text-decoration:none}
 address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
-
+.soff {display:none;}
 /* content */
-h1 {padding:5px 10px; text-shadow: 4px 4px 2px rgba(150, 150, 150, 1)}
-h3 {padding:5px 10px; margin-bottom:30px}
+header {margin-bottom:30px}
+h1 {text-shadow: 4px 4px 2px rgba(150, 150, 150, 1)}
+.content {margin-bottom:30px}
 .content.default,
 .content.in_game {
   display:flex;
@@ -41,7 +42,9 @@ h3 {padding:5px 10px; margin-bottom:30px}
   box-shadow:inset 0px 0px 25px #5eab5e
 }
 .content.in_game {padding: 30px 0}
-#btnGameStart {
+#btnGameStart,
+#cancel,
+#prev {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #000000;
@@ -83,6 +86,7 @@ h3 {padding:5px 10px; margin-bottom:30px}
   width:30%;
   max-width:450px;
   min-width:320px;
+  max-height:400px;
   position: relative;
   display: -ms-flexbox;
   display: flex;
@@ -102,5 +106,32 @@ h3 {padding:5px 10px; margin-bottom:30px}
   -webkit-filter: grayscale(100%);
   filter: gray;
 }
+.list_ideal li a.final img{
+  -webkit-filter: unset;
+  filter: unset;
+}
 .list_ideal li span {display:block;width:100%}
+.list_ideal li span:first-child {height:318px}
 .list_ideal li span img {width:100%}
+#history {max-height:340px;}
+#history h4 {text-align:center; height:10%}
+#history #modal {width:100%; height:100%}
+#history .history_box {height:90%; overflow-y:auto}
+#history .history_box .round {width: 100%;margin-bottom:10px;text-align:center}
+#history .history_box .round:last-child {margin-bottom: 0}
+#history .history_box .round img {
+  width:15%;
+}
+#history .history_box .round img:nth-child(even) {
+  margin-right:2%
+}
+#history .history_box .round img:last-child {margin-right: 0}
+#history img.dim {
+  -webkit-filter: grayscale(100%);
+  filter: gray;
+}
+/* footer */
+footer {
+  display: flex;
+  justify-content: space-between
+}
