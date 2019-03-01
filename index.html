@@ -15,17 +15,19 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <header>
-      <h1>이상형 월드컵</h1>
-      <h3 id="roundTitle">이상형 월드컵에 참여해 주세요.</h3>
-    </header>
-    <div class="content default" id="content">
-      <button id="btnGameStart" onclick="start()">게임 참여</button>
+    <div class="wrap">
+      <header>
+        <h1>이상형 월드컵</h1>
+        <p id="roundTitle">이상형 월드컵에 참여해 주세요.</p>
+      </header>
+      <div class="content default" id="content">
+        <button id="btnGameStart" onclick="start()">게임 참여</button>
+      </div>
+      <footer class="footer soff" id="footer">
+        <button id="cancel" onclick="lezhin.Event.clickCancel()">취소</button>
+        <button id="prev" onclick="lezhin.Event.clickPrev()">이전</button>
+      </footer>
     </div>
-    <footer class="footer soff" id="footer">
-      <button id="cancel" onclick="lezhin.Event.clickCancel()">취소</button>
-      <button id="prev" onclick="lezhin.Event.clickPrev()">이전</button>
-    </footer>
     <script src="js/lezhin.js" async defer></script>
     <script>
       function start() {

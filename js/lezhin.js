@@ -195,7 +195,8 @@ if(!window['lezhin']) {
       setHistory() {
         const tObj = document.getElementById('modal');
         let key, roundDiv, imgObj, roundTitleDiv, roundImgWrapDiv;
-        let historyTitleDiv = document.createElement('h4');
+        let historyTitleDiv = document.createElement('DIV');
+        historyTitleDiv.className = 'tit';
         historyTitleDiv.innerText = '히스토리';
         tObj.appendChild(historyTitleDiv);
         let wrapDiv = document.createElement('DIV');
@@ -236,7 +237,7 @@ if(!window['lezhin']) {
           <li>
             <a class="item ${_O.Vars.curRound === 1 ? 'final' : ''}" id="item_${i}" href="javascript:void(0);" onclick="lezhin.Event.clickItem(this);">
               <span class="thumb"><img src="${_O.Vars.gameHistory[_O.Vars.curRound.toString()][i]['imgSrc']}" alt="여자 연예인 사진"></span>
-              <span class="tit">이름: ${_O.Vars.gameHistory[_O.Vars.curRound.toString()][i]['name']}</span>
+              <strong> ${_O.Vars.gameHistory[_O.Vars.curRound.toString()][i]['name']}</strong>
             </a>
           </li>
           `;
