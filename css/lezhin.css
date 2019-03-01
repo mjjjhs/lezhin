@@ -83,7 +83,7 @@ h1 {font-weight:bold;font-size:2rem;line-height:1.4}
   justify-content:space-between;
 }
 .list_ideal li a {display:block;width:100%}
-.list_ideal li a:hover img{
+.list_ideal li a[hover="true"] img{
   -webkit-filter: grayscale(100%);
   filter: gray;
 }
@@ -94,7 +94,7 @@ h1 {font-weight:bold;font-size:2rem;line-height:1.4}
 .list_ideal li span {display:block;overflow:hidden;width:100%;border:1px solid #ddd;border-radius:10px;}
 .list_ideal li span img {width:100%;vertical-align:top}
 .list_ideal li strong {display:block;text-align:center}
-.list_ideal li a:hover strong {text-decoration:underline}
+.list_ideal li a[hover="true"] strong {text-decoration:underline}
 
 
 #history .tit {margin:10px 0;font-size:18px;font-weight:bold;text-align:center}
