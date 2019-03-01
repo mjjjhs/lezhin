@@ -31,82 +31,82 @@ if(!window['lezhin']) {
         return [
           {
             name: '전지현',
-            imgSrc: '../images/01.jpg',
+            imgSrc: 'images/01.jpg',
             selected: false
           },
           {
             name: '이영애',
-            imgSrc: '../images/02.jpg',
+            imgSrc: 'images/02.jpg',
             selected: false
           },
           {
             name: '수지',
-            imgSrc: '../images/03.jpg',
+            imgSrc: 'images/03.jpg',
             selected: false
           },
           {
             name: '김태희',
-            imgSrc: '../images/04.jpg',
+            imgSrc: 'images/04.jpg',
             selected: false
           },
           {
             name: '신민아',
-            imgSrc: '../images/05.jpg',
+            imgSrc: 'images/05.jpg',
             selected: false
           },
           {
             name: '송혜교',
-            imgSrc: '../images/06.jpg',
+            imgSrc: 'images/06.jpg',
             selected: false
           },
           {
             name: '박보영',
-            imgSrc: '../images/07.jpg',
+            imgSrc: 'images/07.jpg',
             selected: false
           },
           {
             name: '아이유',
-            imgSrc: '../images/08.jpg',
+            imgSrc: 'images/08.jpg',
             selected: false
           },
           {
             name: '김사랑',
-            imgSrc: '../images/09.jpg',
+            imgSrc: 'images/09.jpg',
             selected: false
           },
           {
             name: '아이린',
-            imgSrc: '../images/10.jpg',
+            imgSrc: 'images/10.jpg',
             selected: false
           },
           {
             name: '이효리',
-            imgSrc: '../images/11.jpg',
+            imgSrc: 'images/11.jpg',
             selected: false
           },
           {
             name: '한효주',
-            imgSrc: '../images/12.jpg',
+            imgSrc: 'images/12.jpg',
             selected: false
           },
           {
             name: '한지민',
-            imgSrc: '../images/13.jpg',
+            imgSrc: 'images/13.jpg',
             selected: false
           },
           {
             name: '이나영',
-            imgSrc: '../images/14.jpg',
+            imgSrc: 'images/14.jpg',
             selected: false
           },
           {
             name: '이연희',
-            imgSrc: '../images/15.jpg',
+            imgSrc: 'images/15.jpg',
             selected: false
           },
           {
             name: '고준희',
-            imgSrc: '../images/16.jpg',
+            imgSrc: 'images/16.jpg',
             selected: false
           }
         ];
