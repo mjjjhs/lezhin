@@ -159,7 +159,6 @@ if(!window['lezhin']) {
         if(v.curRound === 1) return;
         const idx = obj.id.split('_')[1];
         v.gameHistory[v.curRound.toString()][idx].selected = true;
-        obj.className = 'item selected';
         if(v.curStage < v.curRound/2) v.curStage++;
         if(v.curStage === v.curRound/2) _O.Ctrl.nextRound();
         _O.Html.setItem();
