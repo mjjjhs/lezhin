@@ -139,7 +139,7 @@ if(!window['lezhin']) {
         if(v.curRound > 1) v.curRound /= 2;
         v.curStage = 0;
         v.gameHistory[v.curRound.toString()] = this.rndLists(v.lists);
-        console.log('v.lists::',v.lists, 'v.gameHistory::',v.gameHistory);
+        // console.log('v.lists::',v.lists, 'v.gameHistory::',v.gameHistory);
         _O.Html.setRoundTitle();
       },
       prevCancelOnOff() {
