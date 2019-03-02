@@ -109,8 +109,8 @@ h1 {font-weight:bold;font-size:2rem;line-height:1.4}
 }
 #history .history_box .round img:last-child {margin-right: 0}
 #history img.dim {
-  /* -webkit-filter: grayscale(100%);
-  filter: gray; */
+  -webkit-filter: grayscale(100%);
+  filter: gray;
 }
 /* footer */
 footer {
